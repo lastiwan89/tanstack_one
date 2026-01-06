@@ -1,0 +1,68 @@
+import { Link } from '@tanstack/react-router'
+
+export default function Footer() {
+  return (
+    <>
+      <footer className="bg-gray-800 flex flex-col items-center gap-4">
+        {/* footer head */}
+        <div>
+          <h1>
+            <Link to="/" className="flex gap-2 items-center">
+              <img
+                src="/logo-akitaone.png"
+                className="w-10 h-10 rounded-full"
+                alt="Akitaone Logo"
+              />
+              <span className="bg-linear-to-r from-cyan-400 via-cyan-500 to-violet-500 bg-clip-text text-transparent font-bold">
+                AKITAONE
+              </span>
+            </Link>
+          </h1>
+          <p className="text-gray-400">
+            We're akitaone japan. Travel agency with best record
+          </p>
+          <div className="flex gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="w-10 h-10 text-gray-300"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              className="w-10 h-10 text-gray-300"
+            >
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </div>
+        </div>
+        <nav className="gap-4 flex text-gray-300">
+          <Link to="/">Home</Link>
+          <Link to="/location">Location</Link>
+          <Link to="/work">Work</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
+        </nav>
+        <div></div>
+      </footer>
+    </>
+  )
+}
