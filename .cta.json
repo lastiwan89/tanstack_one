@@ -1,0 +1,23 @@
+{
+  "projectName": "nonono",
+  "mode": "file-router",
+  "typescript": true,
+  "packageManager": "npm",
+  "tailwind": true,
+  "addOnOptions": {
+    "prisma": {
+      "database": "postgres"
+    }
+  },
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "netlify",
+    "start",
+    "shadcn",
+    "prisma",
+    "tanstack-query",
+    "form"
+  ]
+}
