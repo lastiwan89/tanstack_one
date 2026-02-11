@@ -9,7 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkIndexRouteImport } from './routes/work/index'
+import { Route as LocationIndexRouteImport } from './routes/location/index'
+import { Route as WorkWorkIdRouteImport } from './routes/work/$workId'
+import { Route as LocationIdRouteImport } from './routes/location/$id'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoPrismaRouteImport } from './routes/demo/prisma'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
@@ -23,9 +29,39 @@ import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/work/',
+  path: '/work/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationIndexRoute = LocationIndexRouteImport.update({
+  id: '/location/',
+  path: '/location/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkWorkIdRoute = WorkWorkIdRouteImport.update({
+  id: '/work/$workId',
+  path: '/work/$workId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationIdRoute = LocationIdRouteImport.update({
+  id: '/location/$id',
+  path: '/location/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
@@ -91,8 +127,14 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/demo/prisma': typeof DemoPrismaRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/location/$id': typeof LocationIdRoute
+  '/work/$workId': typeof WorkWorkIdRoute
+  '/location/': typeof LocationIndexRoute
+  '/work/': typeof WorkIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/form/address': typeof DemoFormAddressRoute
@@ -106,8 +148,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/demo/prisma': typeof DemoPrismaRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/location/$id': typeof LocationIdRoute
+  '/work/$workId': typeof WorkWorkIdRoute
+  '/location': typeof LocationIndexRoute
+  '/work': typeof WorkIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/form/address': typeof DemoFormAddressRoute
@@ -122,8 +170,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/demo/prisma': typeof DemoPrismaRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/location/$id': typeof LocationIdRoute
+  '/work/$workId': typeof WorkWorkIdRoute
+  '/location/': typeof LocationIndexRoute
+  '/work/': typeof WorkIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/form/address': typeof DemoFormAddressRoute
@@ -139,8 +193,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
+    | '/contact'
     | '/demo/prisma'
     | '/demo/tanstack-query'
+    | '/location/$id'
+    | '/work/$workId'
+    | '/location/'
+    | '/work/'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
@@ -154,8 +214,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/contact'
     | '/demo/prisma'
     | '/demo/tanstack-query'
+    | '/location/$id'
+    | '/work/$workId'
+    | '/location'
+    | '/work'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
@@ -169,8 +235,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
+    | '/contact'
     | '/demo/prisma'
     | '/demo/tanstack-query'
+    | '/location/$id'
+    | '/work/$workId'
+    | '/location/'
+    | '/work/'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/form/address'
@@ -185,8 +257,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   DemoPrismaRoute: typeof DemoPrismaRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  LocationIdRoute: typeof LocationIdRoute
+  WorkWorkIdRoute: typeof WorkWorkIdRoute
+  LocationIndexRoute: typeof LocationIndexRoute
+  WorkIndexRoute: typeof WorkIndexRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoApiTqTodosRoute: typeof DemoApiTqTodosRoute
   DemoFormAddressRoute: typeof DemoFormAddressRoute
@@ -201,11 +279,53 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/': {
+      id: '/work/'
+      path: '/work'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/location/': {
+      id: '/location/'
+      path: '/location'
+      fullPath: '/location/'
+      preLoaderRoute: typeof LocationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$workId': {
+      id: '/work/$workId'
+      path: '/work/$workId'
+      fullPath: '/work/$workId'
+      preLoaderRoute: typeof WorkWorkIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/location/$id': {
+      id: '/location/$id'
+      path: '/location/$id'
+      fullPath: '/location/$id'
+      preLoaderRoute: typeof LocationIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/tanstack-query': {
@@ -297,8 +417,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   DemoPrismaRoute: DemoPrismaRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  LocationIdRoute: LocationIdRoute,
+  WorkWorkIdRoute: WorkWorkIdRoute,
+  LocationIndexRoute: LocationIndexRoute,
+  WorkIndexRoute: WorkIndexRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoApiTqTodosRoute: DemoApiTqTodosRoute,
   DemoFormAddressRoute: DemoFormAddressRoute,

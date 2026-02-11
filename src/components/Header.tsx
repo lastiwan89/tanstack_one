@@ -6,7 +6,6 @@ import {
   ChevronRight,
   ClipboardType,
   Database,
-  Home,
   Menu,
   Network,
   SquareFunction,
@@ -20,37 +19,78 @@ export default function Header() {
     Record<string, boolean>
   >({})
 
+  const navlink: Array<{ id: number; name: string; href: string }> = [
+    { id: 0, name: 'Home', href: '/' },
+    { id: 1, name: 'Location', href: '/location' },
+    { id: 2, name: 'Work', href: '/work' },
+    { id: 3, name: 'About', href: '/about' },
+    { id: 4, name: 'Contact', href: '/contact' },
+  ]
+
   return (
     <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
+      <header className="p-4 flex justify-between items-center bg-gray-800 text-white shadow-lg">
+        <h1 className="ml-4 text-xl font-semibold">
+          <Link
+            className="flex gap-2 items-center"
+            onClick={() => setIsOpen(false)}
+            to="/"
+          >
+            <img
+              className="h-10"
+              src="/tanstack-circle-logo.png"
+              alt="Tanstack Logo color"
+            />
+            <span className="bg-linear-to-br from-cyan-400 via-cyan-500 to-orange-600 bg-clip-text text-transparent">
+              JagoJalan
+            </span>
+          </Link>
+        </h1>
+        <nav className="hidden lg:flex gap-6 px-8">
+          {navlink.map((items) => (
+            <Link
+              className="hover:text-gray-400 text-gray-100 font-medium"
+              key={items.id}
+              to={items.href}
+            >
+              {items.name}
+            </Link>
+          ))}
+        </nav>
         <button
           onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+          className="lg:hidden p-2 hover:bg-gray-700 rounded-lg transition-colors"
           aria-label="Open menu"
         >
           <Menu size={24} />
         </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/">
-            <img
-              src="/tanstack-word-logo-white.svg"
-              alt="TanStack Logo"
-              className="h-10"
-            />
-          </Link>
-        </h1>
       </header>
 
       <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+        className={`fixed top-0 left-0 h-full w-full md:w-80 bg-gray-800 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold">Navigation</h2>
+          <h2 className="text-xl font-bold">
+            <Link
+              className="flex gap-2 items-center"
+              onClick={() => setIsOpen(false)}
+              to="/"
+            >
+              <img
+                className="h-10"
+                src="/tanstack-circle-logo.png"
+                alt="Tanstack Logo color"
+              />
+              <span className="bg-linear-to-br from-cyan-400 via-cyan-500 to-orange-600 bg-clip-text text-transparent">
+                JagoJalan
+              </span>
+            </Link>
+          </h2>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
             aria-label="Close menu"
           >
             <X size={24} />
@@ -58,18 +98,20 @@ export default function Header() {
         </div>
 
         <nav className="flex-1 p-4 overflow-y-auto">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Home size={20} />
-            <span className="font-medium">Home</span>
-          </Link>
+          {navlink.map((items) => (
+            <Link
+              key={items.id}
+              to={items.href}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
+              activeProps={{
+                className:
+                  'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
+              }}
+            >
+              <span className="font-medium">{items.name}</span>
+            </Link>
+          ))}
 
           {/* Demo Links Start */}
 
