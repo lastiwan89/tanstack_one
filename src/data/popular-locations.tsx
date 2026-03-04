@@ -56,5 +56,11 @@ export const getLocations = createServerFn({
         sources:
           'https://images.pexels.com/photos/30013597/pexels-photo-30013597.jpeg',
       },
+      {
+        id: 8,
+        name: 'Bukit Merese',
+        sources:
+          'https://images.pexels.com/photos/13629327/pexels-photo-13629327.jpeg',
+      },
     ],
 )

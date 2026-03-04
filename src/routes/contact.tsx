@@ -4,6 +4,14 @@ import { Field, FieldError, FieldLabel } from '#/components/selia/field'
 import { Fieldset, FieldsetLegend } from '#/components/selia/fieldset'
 import { Input } from '#/components/selia/input'
 import { Label } from '#/components/selia/label'
+import {
+  Select,
+  SelectItem,
+  SelectList,
+  SelectPopup,
+  SelectTrigger,
+  SelectValue,
+} from '#/components/selia/select'
 import { Text } from '#/components/selia/text'
 import { createFileRoute } from '@tanstack/react-router'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -11,6 +19,13 @@ import { FaWhatsapp } from 'react-icons/fa'
 export const Route = createFileRoute('/contact')({
   component: Contact,
 })
+
+const options = [
+  { value: 'Private', label: '1 Orang' },
+  { value: 'Small Family', label: '2 Orang' },
+  { value: 'Family', label: '3 Orang' },
+  { value: 'Big Family', label: '4 Orang' },
+]
 
 function Contact() {
   return (
@@ -28,7 +43,45 @@ function Contact() {
           </p>
         </div>
       </section>
-      <section className="island-shell rounded-2xl p-6 sm:p-8 mt-8">
+      <section className="island-shell rounded-2xl p-6 sm:p-8 mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="w-full max-w-md pl-4">
+          <Fieldset>
+            <FieldsetLegend>Your Plan</FieldsetLegend>
+            <Text>Pilih paket liburan yang anda inginkan.</Text>
+            <div className="mb-4">
+              <Select>
+                <SelectTrigger className="lg:w-full">
+                  <SelectValue placeholder="Jumlah Orang" />
+                </SelectTrigger>
+                <SelectPopup>
+                  <SelectList>
+                    {options.map((item, index) => (
+                      <SelectItem key={index} value={item}>
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectList>
+                </SelectPopup>
+              </Select>
+            </div>
+            <div>
+              <Select>
+                <SelectTrigger className="lg:w-full">
+                  <SelectValue placeholder="Paket" />
+                </SelectTrigger>
+                <SelectPopup>
+                  <SelectList>
+                    {options.map((item, index) => (
+                      <SelectItem className="mt-2" key={index} value={item}>
+                        {item.value}
+                      </SelectItem>
+                    ))}
+                  </SelectList>
+                </SelectPopup>
+              </Select>
+            </div>
+          </Fieldset>
+        </div>
         <div className="w-full max-w-md">
           <Fieldset>
             <FieldsetLegend>Personal Information</FieldsetLegend>
@@ -74,7 +127,11 @@ function Contact() {
               nativeButton={false}
               variant="secondary"
               render={
-                <a>
+                <a
+                  href="https://wa.me/+6287824737773"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaWhatsapp />
                   WhatsApp
                 </a>

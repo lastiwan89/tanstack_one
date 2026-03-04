@@ -92,7 +92,7 @@ function App() {
                 params={{ locationId: String(items.id) }}
                 className="mt-2"
               >
-                <p className="island-kicker">{items.name}</p>
+                <p className="island-kicker mt-3">{items.name}</p>
               </Link>
             </div>
           ))}
