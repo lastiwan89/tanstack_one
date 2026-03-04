@@ -1,11 +1,13 @@
-import { Location } from '#/content/location'
+import { getLocations } from '#/data/popular-locations'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/location/')({
   component: RouteComponent,
+  loader: async () => getLocations(),
 })
 
 function RouteComponent() {
+  const location = Route.useLoaderData()
   return (
     <main className="page-wrap px-4 pb-8 pt-14">
       <section className="island-shell rise-in relative overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14">
@@ -21,26 +23,24 @@ function RouteComponent() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative overflow-hidden py-6">
-          {Location.map((items, index) => (
+          {location.map((items, index) => (
             <div
-              className="island-shell feature-card rise-in rounded-2xl p-3"
+              className="island-shell feature-card rise-in rounded-2xl p-4"
               style={{ animationDelay: `${index * 90 + 80}ms` }}
               key={index}
             >
-              <img src={items.src} alt={items.name} />
-              <div className="mt-2">
-                <p className="font-medium text-transparent bg-linear-to-r from-cyan-400 to-fuchsia-500 bg-clip-text">
-                  {items.name}
-                </p>
-                <p>
-                  Rating :{' '}
-                  <span className="font-semibold text-gray-100">
-                    {items.rating}
-                  </span>{' '}
-                  / 10
-                </p>
-                <p>{items.description}</p>
-              </div>
+              <img
+                className="rounded-2xl"
+                src={items.sources}
+                alt={items.name}
+              />
+              <Link
+                to="/location/$locationId"
+                params={{ locationId: String(items.id) }}
+                className="mt-2"
+              >
+                <p className="island-kicker mt-3">{items.name}</p>
+              </Link>
             </div>
           ))}
         </div>
@@ -49,7 +49,7 @@ function RouteComponent() {
             to="/"
             className="rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-(--lagoon-deep) no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]"
           >
-            See all
+            Back home
           </Link>
         </div>
       </section>

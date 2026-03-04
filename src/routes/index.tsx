@@ -1,10 +1,14 @@
-import { Location } from '#/content/location'
+import { getLocations } from '#/data/popular-locations'
 import { createFileRoute } from '@tanstack/react-router'
 import { Link } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({
+  component: App,
+  loader: async () => await getLocations(),
+})
 
 function App() {
+  const location = Route.useLoaderData()
   return (
     <main className="page-wrap px-4 pb-8 pt-14">
       <section className="island-shell rise-in relative overflow-hidden rounded-4xl px-6 py-10 sm:px-10 sm:py-14">
@@ -76,29 +80,19 @@ function App() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative overflow-hidden">
-          {Location.map((items, index) => (
+          {location.slice(1, 4).map((items, index) => (
             <div
               className="island-shell feature-card rise-in rounded-2xl p-3"
               style={{ animationDelay: `${index * 90 + 80}ms` }}
               key={index}
             >
-              <img src={items.src} alt={items.name} />
+              <img src={items.sources} alt={items.name} />
               <Link
                 to="/location/$locationId"
-                params={{ locationId: items.name }}
+                params={{ locationId: String(items.id) }}
                 className="mt-2"
               >
-                <p className="font-medium text-transparent bg-linear-to-r from-cyan-400 to-fuchsia-500 bg-clip-text">
-                  {items.name}
-                </p>
-                <p>
-                  Rating :{' '}
-                  <span className="font-semibold text-gray-100">
-                    {items.rating}
-                  </span>{' '}
-                  / 10
-                </p>
-                <p>{items.description}</p>
+                <p className="island-kicker">{items.name}</p>
               </Link>
             </div>
           ))}
