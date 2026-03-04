@@ -20,11 +20,17 @@ export const Route = createFileRoute('/contact')({
   component: Contact,
 })
 
-const options = [
-  { value: 'Private', label: '1 Orang' },
-  { value: 'Small Family', label: '2 Orang' },
-  { value: 'Family', label: '3 Orang' },
-  { value: 'Big Family', label: '4 Orang' },
+const orang = [
+  { label: '1 Orang' },
+  { label: '2 Orang' },
+  { label: '3 Orang' },
+  { label: '4 Orang' },
+]
+const suite = [
+  { label: 'Backpacker' },
+  { label: 'Private' },
+  { label: 'Family' },
+  { label: 'Luxury' },
 ]
 
 function Contact() {
@@ -55,7 +61,7 @@ function Contact() {
                 </SelectTrigger>
                 <SelectPopup>
                   <SelectList>
-                    {options.map((item, index) => (
+                    {orang.map((item, index) => (
                       <SelectItem key={index} value={item}>
                         {item.label}
                       </SelectItem>
@@ -71,9 +77,9 @@ function Contact() {
                 </SelectTrigger>
                 <SelectPopup>
                   <SelectList>
-                    {options.map((item, index) => (
+                    {suite.map((item, index) => (
                       <SelectItem className="mt-2" key={index} value={item}>
-                        {item.value}
+                        {item.label}
                       </SelectItem>
                     ))}
                   </SelectList>
