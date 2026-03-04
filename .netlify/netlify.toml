@@ -1,0 +1,30 @@
+plugins = []
+functionsDirectory = "/Users/badliar/Development/project/react/march_worktree/selia/netlify/functions"
+functionsDirectoryOrigin = "config-v1"
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/badliar/Development/project/react/march_worktree/selia/dist/client"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "pnpm run build"
+functions = "/Users/badliar/Development/project/react/march_worktree/selia/netlify/functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
