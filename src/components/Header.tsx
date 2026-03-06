@@ -71,18 +71,18 @@ export default function Header() {
           </div>
           <button
             onClick={() => setIsOpen(true)}
-            className="p-2 hover:bg-gray-800 rounded-lg md:hidden transition-colors"
+            className="p-2 rounded-lg md:hidden transition-colors"
             aria-label="Open menu"
           >
             <IoMenu size={24} />
           </button>
         </nav>
         <aside
-          className={`fixed top-0 left-0 h-full w-screen bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+          className={`fixed top-0 left-0 h-full w-screen bg-(--header-bg) text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
             isOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
-          <div className="flex items-center justify-between py-3 px-4">
+          <div className="flex items-center justify-between py-3 px-7">
             <h2 className="m-0 shrink-0 text-base font-semibold tracking-tight">
               <Link
                 to="/"
@@ -94,10 +94,10 @@ export default function Header() {
             </h2>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
+              className="p-2 bg-(--chip-bg) rounded-l hover:bg-(--header-bg) transition-colors"
               aria-label="Close menu"
             >
-              <IoClose size={24} />
+              <IoClose className="text-(--sea-ink)" size={24} />
             </button>
           </div>
           <nav className="flex flex-col gap-6 items-center p-8 bg-(--header-bg) border-(--line">
